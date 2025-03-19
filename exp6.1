@@ -1,0 +1,57 @@
+import java.util.*;
+
+class Employee {
+    String name;
+    int age;
+    double salary;
+
+    // Constructor
+    public Employee(String name, int age, double salary) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    // toString method for printing
+    @Override
+    public String toString() {
+        return "Employee{name='" + name + "', age=" + age + ", salary=" + salary + "}";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        List<Employee> employees = new ArrayList<>(Arrays.asList(
+            new Employee("Alice", 30, 50000),
+            new Employee("Bob", 25, 60000),
+            new Employee("Charlie", 35, 40000),
+            new Employee("David", 30, 55000)
+        ));
+
+        // Sort by name
+        employees.sort(Comparator.comparing(e -> e.name));
+        System.out.println("Sorted by name: " + employees);
+
+        // Sort by age
+        employees.sort(Comparator.comparing(e -> e.age));
+        System.out.println("Sorted by age: " + employees);
+
+        // Sort by salary
+        employees.sort(Comparator.comparing(e -> e.salary));
+        System.out.println("Sorted by salary: " + employees);
+
+        // Sort by multiple fields: age, then salary
+        employees.sort(Comparator.comparing(Employee::getAge)
+                                 .thenComparing(Employee::getSalary));
+        System.out.println("Sorted by age, then salary: " + employees);
+    }
+
+    // Getters for method references
+    private static int getAge(Employee e) {
+        return e.age;
+    }
+
+    private static double getSalary(Employee e) {
+        return e.salary;
+    }
+}
