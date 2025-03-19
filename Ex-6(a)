@@ -1,0 +1,56 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Employee {
+    String name;
+    int age;
+    double salary;
+
+    public Employee(String name, int age, double salary) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", salary=" + salary +
+                '}';
+    }
+}
+
+public class EmployeeSortExample {
+    public static void main(String[] args) {
+        List<Employee> employeeList = new ArrayList<>();
+        employeeList.add(new Employee("Alice", 30, 70000));
+        employeeList.add(new Employee("Bob", 25, 50000));
+        employeeList.add(new Employee("Charlie", 35, 60000));
+
+        System.out.println("Sorting by Name:");
+        employeeList.sort((e1, e2) -> e1.getName().compareTo(e2.getName()));
+        employeeList.forEach(System.out::println);
+
+        System.out.println("\nSorting by Age:");
+        employeeList.sort((e1, e2) -> Integer.compare(e1.getAge(), e2.getAge()));
+        employeeList.forEach(System.out::println);
+
+        System.out.println("\nSorting by Salary:");
+        employeeList.sort((e1, e2) -> Double.compare(e1.getSalary(), e2.getSalary()));
+        employeeList.forEach(System.out::println);
+    }
+}
